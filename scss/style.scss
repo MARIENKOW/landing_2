@@ -16,7 +16,6 @@ h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight: 400;}
 
 /*! ______ОБНУЛЕНИЕ______ */
 body{
-   overflow-x: hidden;
 }
 .container{
    max-width: 1340px;
@@ -56,14 +55,13 @@ $addSize: $startSize - $minSize;
 
 .wrapper {
    background-color: #000;
-   min-height: 100vh;
 }
 .header {
-   min-width: 100%;
+   width: 100%;
    position: absolute;
    top: 50px;
    left: 0;
-   z-index: 0;
+   z-index: 100;
    transition:background-color .3s;
    
 		&__inner {
@@ -82,6 +80,28 @@ $addSize: $startSize - $minSize;
          text-transform: uppercase;
          font-size: $fontsize12;
          font-weight: 400;
+         position: relative;
+         &::after{
+            content: '';
+            width: 1%;
+            height: 1px;
+            background-color: #116390;
+            position: absolute;
+            opacity: 0;
+            top: 120%;
+            left: 50%;
+            transition:width .3s;
+            transform: translateX(-50%);
+         }
+         &:hover{
+            transform: scale(1.1);
+            transition: .2s;
+            cursor: pointer;
+            &::after{
+               width: 100%;
+               opacity: 1;
+            }
+         }
 		}
 
 		&__logo {
@@ -90,6 +110,11 @@ $addSize: $startSize - $minSize;
          img{
             width: 100%;
             height: 100%;
+            &:hover{
+               cursor: pointer;
+               transition: .3s;
+               transform: scale(1.1);
+            }
          }
 		}
       &__burger{
@@ -125,7 +150,7 @@ $addSize: $startSize - $minSize;
    position: fixed;
    background-color: rgba(0, 0, 0, 0.364);
    top: 0;
-   z-index: 0;
+   z-index: 100;
 
 }
 .intro {
@@ -194,6 +219,11 @@ min-width: 100%;
    &__btn {
       border: 1px solid #fff;
       color: #000;
+      &:hover{
+         background-color: rgba(0, 0, 0, 0.1);
+         border: 1px solid #000;
+         color: #fff;
+      }
    }
 }
 .btn__main {
@@ -207,6 +237,7 @@ min-width: 100%;
    width: 180px;
    height: 52px;
    text-transform: uppercase;
+   transition: .4s;
 }
 @media(max-width:990px){
 
@@ -232,22 +263,34 @@ min-width: 100%;
          margin: 0px 0px;
          padding: 40px 10px;
       }
-      &__title{
+      &__title,&__subtitle{
          text-align: center;
       }
-
    }
 }
 @media(max-width:768px){
    .header{
+
       .container{
          padding: 0px 0px;
       }
       &__inner{
          height: 55px;
          padding: 5px 0px;
-         background-color: rgba(57, 38, 38, 0.568);
+         background-color: rgba(44, 73, 80, 0.338);
          transition: .3s;
+         &:after{
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgb(0, 0, 0);
+            width: 0;
+            height: 55px;
+            transition: .4s;
+            z-index: -1;
+      }
       }
       &__navigation{
          flex-direction: column;
@@ -255,27 +298,38 @@ min-width: 100%;
          top: 100%;
          width: 50%;
          height: calc(100vh - 105px);
-         background-color: rgb(61, 50, 50);
+         background-color: #050313e6;
+         align-items: center;
          padding: 50px 20px;
-         z-index: -1;
+         z-index: 1;
          transition: .4s;
-         opacity: 0;
-         transform: translateY(-120%);
+         opacity: 1;
 
          &:nth-child(1){
             left: 0px;
             text-align: end;
+            transform: translatex(-100%);
+
          }
          &:nth-child(3){
             right: 0px;
+            transform: translatex(100%);
+
          }
       }
 
-      ._active{
-         transform: translateY(0);
+      ._active &__navigation{
+         transform: translateX(0);
          opacity: 1;
 
       }
+      ._active &__inner{
+         &::after{
+            width: 100%;
+            pointer-events: none;
+         }
+      }
+
       &__link{
          font-size: 20px;
       }
@@ -284,10 +338,10 @@ min-width: 100%;
          margin: 0px 15px;
       }
    }
-}
-._fixed .header__inner{
-   background-color: #050313da;
-}
-._fixed .header__navigation{
-   height: calc(100vh - 55px);
+   ._fixed .header__inner{
+      background-color: #050313da;
+   }
+   ._fixed .header__navigation{
+      height: calc(100vh - 55px);
+   }
 }

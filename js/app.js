@@ -1,6 +1,8 @@
 let header = document.querySelector('.header');
 let wrapper = document.documentElement;
 let navigation = document.querySelectorAll('.header__navigation');
+let body = document.querySelector('body');
+let burger = document.querySelector('.header__burger');
 if (header != null){
    window.addEventListener('scroll',function headerScroll(){
       
@@ -12,17 +14,20 @@ if (header != null){
       }
    })
 }
-let burger = document.querySelector('.header__burger');
-let body = document.querySelector('body');
+if (burger != null){
    burger.addEventListener('click',function burgerClick(){
-      for(let i of navigation){
-         let nav = i;
-         nav.classList.toggle('_active');
-         if(nav.classList.contains('_active')){
-            body.style.overflow = 'hidden';
-         }else{
-            body.style.overflow = '';
-         }
-      }
-      
+      let scrollWidth = window.innerWidth-wrapper.clientWidth;
+      let headerDif = window.innerWidth-scrollWidth;
+            header.classList.toggle('_active');
+            if(header.classList.contains('_active')){
+               body.style.cssText = 
+                  `overflow:hidden;
+
+                  `
+               header.style.width = `${headerDif}px`
+            }else{
+               body.style.cssText = ``;
+               header.style.width = ``
+            }
    });
+}
