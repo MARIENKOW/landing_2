@@ -55,6 +55,8 @@ $addSize: $startSize - $minSize;
 
 .wrapper {
    background-color: #000;
+   overflow: hidden;
+
 }
 .header {
    width: 100%;
@@ -63,12 +65,14 @@ $addSize: $startSize - $minSize;
    left: 0;
    z-index: 100;
    transition:background-color .3s;
-   
 		&__inner {
+         width: 100%;
          display: flex;
          justify-content: space-between;
          align-items: center;
          height: 96px;
+         position: relative;
+
 		}
       &__navigation{
          color: #fff;
@@ -124,25 +128,30 @@ $addSize: $startSize - $minSize;
          align-items: center;
          cursor: pointer;
          position: relative;
+         &::before,&::after{
+            content: '';
+            position: absolute;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: #fff;
+            transition: .4s;
+
+         }
+         &::before{
+            top: 0;
+         }
+         &::after{
+            bottom: 0;
+         }
          span{
             display: block;
             width: 100%;
             height: 2px;
             background-color: #fff;
-            &::before,&::after{
-               content: '';
-               position: absolute;
-               left: 0;
-               width: 100%;
-               height: 2px;
-               background-color: #fff;
-            }
-            &::before{
-               top: 0;
-            }
-            &::after{
-               bottom: 0;
-            }
+            transition: .4s;
+
+
          }
       }
 }
@@ -239,6 +248,147 @@ min-width: 100%;
    text-transform: uppercase;
    transition: .4s;
 }
+.brends {
+   background-color: #fff;
+   &--container {
+      max-width: 1298px;
+   }
+   &__inner {
+      display: flex;
+      justify-content: space-between;
+      padding: 60px 0px 40px 0px;
+      gap: 10px;
+
+   }
+
+   &__block {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+   &__title {
+      text-align: center;
+      font-family: $roboto;
+      font-weight: 400;
+      font-size: $fontsize18;
+      max-width: 300px;
+      line-height: 32px;
+   }
+
+   &__logo {
+      margin: 36px 0px 0px 0px;
+      max-width: 300px;
+      height: 50px;
+      img{
+         width: 100%;
+      }
+   }
+}
+.line {
+   background-color: #fff;
+   width: 100%;
+   &__inner {
+      width: 100%;
+      height: 1px;
+      background-color:#BDBDBD ;
+   }
+}
+.shop {
+   background-color: #fff;
+   &--container {
+      max-width: 1276px;
+   }
+   &__inner{
+      @include adaptiv-value('padding-top',105 ,50 ,1 );
+      @include adaptiv-value('padding-bottom',140 ,50 ,1 );
+
+   }
+   &__top {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+   &__title {
+      font-family: $libration;
+      font-weight: 400;
+      line-height: 80px;
+      text-align: center;
+      margin: 0px 0px 24px 0px;
+      max-width: 673px;
+      @include adaptiv-value("font-size",64 ,37 ,1 );
+      @include adaptiv-value("line-height",80 ,32 ,1 );
+
+   }
+
+   &__subtitle {
+      text-align: center;
+      font-family: $roboto;
+      font-size: 12px;
+      text-transform: uppercase;
+      line-height: 18px;
+      margin: 0px 0px 82px 0px;
+      @include adaptiv-value('margin-bottom',82 ,20 ,1 );
+   }
+
+   &__main {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+      @media(max-width:1190px){
+         flex-direction: column;
+         align-items: center;
+         gap: 90px;
+      }
+   }
+
+   &__block {
+      max-width: 382px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+   }
+
+   &__img {
+      max-height: 451px;
+      @include adaptiv-value('margin-bottom',19 ,10 ,1 );
+      img{
+         object-position: center;
+         width: 100%;
+         height: 100%;
+      }
+   }
+
+   &__name {
+      margin: 0px 0px 16px 0px;
+      font-family: $libration;
+      font-size: 30px;
+      line-height: 44px;
+   }
+
+   &__description {
+      margin: 0px 0px 27px 0px;
+      font-family:$roboto;
+      font-size: 16px;
+      line-height: 28px;
+   }
+
+   &__btn {
+      background-color: #000;
+      color: #fff;
+      border: none;
+   }
+}
+
+
+
+
+
+
+
 @media(max-width:990px){
 
    .intro{
@@ -267,6 +417,15 @@ min-width: 100%;
          text-align: center;
       }
    }
+.brends{
+   &__inner{
+      flex-direction: column;
+      gap: 50px;
+   }
+   &__logo{
+      margin: 10px 0px 0px 0px;
+   }
+}
 }
 @media(max-width:768px){
    .header{
@@ -290,9 +449,10 @@ min-width: 100%;
             height: 55px;
             transition: .4s;
             z-index: -1;
-      }
+         }
       }
       &__navigation{
+         display: flex;
          flex-direction: column;
          position: absolute;
          top: 100%;
@@ -303,7 +463,39 @@ min-width: 100%;
          padding: 50px 20px;
          z-index: 1;
          transition: .4s;
+         opacity: 0;
+         &:nth-child(1){
+            left: 0px;
+            text-align: end;
+            transform-origin: left;
+            transform:perspective(400px) rotatey(-90deg) ;
+
+         }
+         &:nth-child(3){
+            right: 0px;
+            transform-origin: right;
+            transform:perspective(400px) rotatey(90deg) ;
+
+         }
+      }
+      ._active &__navigation{
+         transform: rotate(0);
          opacity: 1;
+
+      }
+      ._fixed &__navigation{
+         display: flex;
+         flex-direction: column;
+         position: absolute;
+         top: 100%;
+         width: 50%;
+         height: calc(100vh - 55px);
+         background-color: #050313e6;
+         align-items: center;
+         padding: 50px 20px;
+         z-index: 1;
+         transition: .4s;
+         opacity: 0;
 
          &:nth-child(1){
             left: 0px;
@@ -318,12 +510,12 @@ min-width: 100%;
          }
       }
 
-      ._active &__navigation{
+      ._fixed ._active &__navigation{
          transform: translateX(0);
          opacity: 1;
 
       }
-      ._active &__inner{
+      ._active{
          &::after{
             width: 100%;
             pointer-events: none;
@@ -337,11 +529,24 @@ min-width: 100%;
          display: flex;
          margin: 0px 15px;
       }
+      ._active &__burger {
+         &::before{
+            transform:translateY(-50%) rotate(225deg);
+
+            top: 50%;
+         }
+         &::after{
+            top: 50%;
+            transform:translateY(-50%) rotate(-225deg);
+
+         }
+         span{
+            transform: scale(0);
+         }
+      }
    }
    ._fixed .header__inner{
       background-color: #050313da;
    }
-   ._fixed .header__navigation{
-      height: calc(100vh - 55px);
-   }
+
 }

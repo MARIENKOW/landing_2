@@ -1,13 +1,14 @@
 let header = document.querySelector('.header');
+let headerInner = document.querySelector('.header__inner');
+
 let wrapper = document.documentElement;
 let navigation = document.querySelectorAll('.header__navigation');
 let body = document.querySelector('body');
 let burger = document.querySelector('.header__burger');
 if (header != null){
    window.addEventListener('scroll',function headerScroll(){
-      
-      let headerTop = wrapper.getBoundingClientRect().top;
-      if(headerTop<=-50){
+      let headerTop = window.scrollY;
+      if(headerTop>=50){
          header.classList.add('_fixed');
       }else{
          header.classList.remove('_fixed');
@@ -18,11 +19,11 @@ if (burger != null){
    burger.addEventListener('click',function burgerClick(){
       let scrollWidth = window.innerWidth-wrapper.clientWidth;
       let headerDif = window.innerWidth-scrollWidth;
-            header.classList.toggle('_active');
-            if(header.classList.contains('_active')){
+            headerInner.classList.toggle('_active');
+            if(headerInner.classList.contains('_active')){
                body.style.cssText = 
                   `overflow:hidden;
-
+                  padding-right:${scrollWidth}px;
                   `
                header.style.width = `${headerDif}px`
             }else{
