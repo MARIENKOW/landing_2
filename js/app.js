@@ -1,6 +1,5 @@
 let header = document.querySelector('.header');
 let headerInner = document.querySelector('.header__inner');
-
 let wrapper = document.documentElement;
 let navigation = document.querySelectorAll('.header__navigation');
 let body = document.querySelector('body');
@@ -36,83 +35,36 @@ let names = document.querySelectorAll('.footer__name');
 let navs = document.querySelectorAll('.footer__nav');
 for(let i =0; i<names.length;i++){
    let name = names[i];
-   name.nextElementSibling.style.height = '0px';
-   // name.nextElementSibling.style.paddingTop = 0;
-   // name.nextElementSibling.style.paddingBottom = 0;
-   // name.nextElementSibling.style.marginTop = 0;
-   // name.nextElementSibling.style.marginBottom = 0;
-   name.nextElementSibling.classList.add('_a');
-   name.addEventListener('click',function nameClick(){
-      name.classList.toggle('_open');
-      for(let j = 0;j<navs.length;j++){
-         let nav = navs[j];
-         if(j===i){
-            _slideToggle(nav,500);
+   let overflow = getComputedStyle(name).overflow;
+   if(overflow === 'hidden'){
+      name.nextElementSibling.style.height = '0px';
+      name.nextElementSibling.classList.add('_a');
+      name.addEventListener('click',function nameClick(){
+         name.classList.toggle('_open');
+         for(let j = 0;j<navs.length;j++){
+            let name = names[j];
+            let nav = navs[j];
+            if(j===i){
+               _slideToggle(nav,500);
+            }else{
+               _slideUp(nav,500);
+               name.classList.remove('_open');
+            }
          }
-      }
-      // for(let d = 0;d<names.length;d++){
-      //    let name = names[d];
-      //    if (d !=i){
-      //       name.classList.remove('_open');
-      //    }
-      // }
-   })
+      })
+   }
 }
 let _slideUp = (target,duration = 500) => {
-      if (!target.classList.contains('_sliide')){
-         target.classList.add('_slide');
+      if (!target.classList.contains('_a')){
          target.classList.add('_a');
-         // target.style.transitionProperty = 'height,margin,padding';
-         // target.style.transitionDuration = duration + 'ms';
-         // target.style.height = target.offsetHeight + 'px';
-         // target.offsetHeight;
-         target.style.height = '';
-         // target.style.paddingTop = 0;
-         // target.style.paddingBottom = 0;
-         // target.style.marginTop = 0;
-         // target.style.marginBottom = 0;
-         window.setTimeout(()=>{
-            // target.hidden =  true;
-            // target.style.removeProperty('height');
-            // target.style.removeProperty('padding-top');
-            // target.style.removeProperty('padding-bottom');
-            // target.style.removeProperty('margin-top');
-            // target.style.removeProperty('margin-bottom');
-            // target.style.removeProperty('overflow');
-            // target.style.removeProperty('transition-duration');
-            // target.style.removeProperty('transition-property');
-            target.classList.remove('_slide');
-         },duration)
+         target.style.height = '0px';
       }
 }
 let _slideDown = (target,duration = 500) => {
-   if (!target.classList.contains('_sliide') && target.classList.contains('_a')){
-      target.classList.add('_slide');
-      if(target.hidden) {
-         target.hidden = false;
-      }
+   if (target.classList.contains('_a')){
+      target.classList.remove('_a');
       let height = target.scrollHeight;
-      target.style.transitionProperty = 'height,margin,padding';
-      target.style.transitionDuration = duration + 'ms';
-      // target.style.height = '';
-      // target.style.paddingTop = 0;
-      // target.style.paddingBottom = 0;
-      // target.style.marginTop = 0;
-      // target.style.marginBottom = 0;
-      // target.offsetHeight;
       target.style.height = height + 'px';
-      // target.style.removeProperty('padding-top');
-      // target.style.removeProperty('padding-bottom');
-      // target.style.removeProperty('margin-top');
-      // target.style.removeProperty('margin-bottom');
-      console.log(height);
-      window.setTimeout(()=>{
-         // target.style.removeProperty('height');
-         // target.style.removeProperty('transition-duration');
-         // target.style.removeProperty('transition-property');
-         target.classList.remove('_slide');
-         target.classList.remove('_a');
-      },duration)
    }
 }
 let _slideToggle = (target,duration = 500) => {

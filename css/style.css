@@ -1497,6 +1497,7 @@ h1, h2, h3, h4, h5, h6 {
         -ms-flex-direction: column;
             flex-direction: column;
     width: 100%;
+    gap: 10px;
   }
   .footer__name {
     padding: 10px 20px;
@@ -1516,21 +1517,29 @@ h1, h2, h3, h4, h5, h6 {
     left: 0;
     background: -o-linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247));
     background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247));
-    width: 110%;
+    width: 120%;
     height: 100%;
-    -webkit-transition: 0.4s;
-    -o-transition: 0.4s;
-    transition: 0.4s;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
   }
   .footer__nav {
     border-radius: 0 0 10px 10px;
     height: 0;
     overflow: hidden;
     padding: 0px 30px;
-    margin: 10px 0px;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
+    transition: 0.5s;
+  }
+  .footer__link:first-child {
+    padding: 10px 0px 0px 0px;
   }
   .footer ._open::after {
-    left: -10%;
+    left: -20%;
+  }
+  ._open ~ .footer__nav {
+    height: auto;
   }
   .footer__corner {
     display: block;
