@@ -32,3 +32,20 @@ if (burger != null){
             }
    });
 }
+let names = document.querySelectorAll('.footer__name');
+let navs = document.querySelectorAll('.footer__nav');
+
+for(let i =0; i<names.length;i++){
+   let name = names[i];
+   let j = null;
+   name.addEventListener('click',function nameClick(){
+      name.classList.toggle('_open');
+      j = i;
+      for(let d = 0;d<names.length;d++){
+         let name = names[d];
+         if (d !=j){
+            name.classList.remove('_open');
+         }
+      }
+   })
+}

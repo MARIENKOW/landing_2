@@ -683,7 +683,165 @@ min-width: 100%;
       }
    }
 }
+.footer {
+   width: 100%;
+   background-color: #000;
+   color: #fff;
+   &__inner {
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      padding-top: 55px;
+      @include adaptiv-value('padding-bottom',55 ,10 ,1 );
+   }
 
+   &__left {
+      width: 50%;
+      padding: 0px 40px 0px 0px;
+   }
+   &__body{
+      max-width: 420px;
+
+   }
+   &__title {
+      font-family: $libration;
+      font-size: 42px;
+      line-height: 72px;
+      font-weight: 400;
+   }
+
+   &__subtitle {
+      font-family: $roboto;
+      font-size: $fontsize18;
+      line-height: 27px;
+      font-weight: 400;
+      margin: 10px 0px 30px 0px;
+
+   }
+   &__form{
+      display: flex;
+      border-bottom: 1px solid #8A8A8A;
+      align-items: center;
+      padding: 10px 0px;
+      position: relative;
+      overflow: hidden;
+
+      &::after{
+         content: '';
+         position: absolute;
+         top: 0;
+         left: -50%;
+         height: 200%;
+         width: 100%;
+         background: linear-gradient(rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.2) 20%,rgba(255, 255, 255, 0));
+         z-index: 3;
+         transform: rotate(-45deg);
+         transition: .4s;
+         pointer-events: none;
+      }
+
+   }
+   &__mail{
+      color: #ffffff;
+      background-color: #000;
+      flex: 1;
+      padding: 0px 30px ;
+
+
+      font-size: $fontsize18;
+      line-height: 40px;
+
+      &::placeholder{
+         
+         font-family: $roboto;
+         font-size: 9px;
+         line-height: 14px;
+      }
+   }
+   &__submit{
+      background-color: #000;
+      font-family: $roboto;
+      font-size: $fontsize12;
+      text-transform: uppercase;
+      line-height: 14px;
+      font-weight: 400;
+      height: 35px;
+      color: #ffffff;
+      cursor: pointer;
+   }
+   &__right {
+      width: 50%;
+      display: flex;
+      justify-content: space-between;
+      gap: 30px;
+   }
+
+   &__block {
+   }
+
+   &__name {
+      text-transform: uppercase;
+      font-family: $roboto;
+      font-size: $fontsize14;
+      line-height: 21px;
+      font-weight: 400;
+      padding: 0px 0px 30px 0px;
+      position: relative;
+
+   }
+   &__corner{
+      display: none;
+      height: 30%;
+      aspect-ratio: 54/34;
+      position: absolute;
+      top:50%;
+      right: 10px;
+      transform: translateY(-50%);
+      filter: brightness(1000%);
+   }
+   &__nav {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+   }
+
+   &__link {
+      font-family: $roboto;
+      font-size: $fontsize12;
+      text-transform: uppercase;
+      line-height: 18px;
+      font-weight: 400;
+      color: #8A8A8A;
+      white-space: nowrap;
+      &:not(:last-child){
+         margin: 0px 0px 20px 0px;
+      }
+      &:hover{
+         color: #fff;
+         transform: scale(1.1);
+      }
+   }
+
+   &__bottom {
+      flex: 0 1 760px;
+      display: flex;
+      gap: 20px;
+      @include adaptiv-value('padding-top',140 ,60 ,1 );
+      justify-content: space-between;
+      flex-wrap: wrap;
+   }
+
+   &__go {
+      font-family: $roboto;
+      font-size: $fontsize16;
+      line-height: 24px;
+      font-weight: 400;
+      white-space: nowrap;
+      &:not(:first-child){
+         color: #8A8A8A;
+      }
+   }
+}
 
 
 
@@ -879,6 +1037,42 @@ min-width: 100%;
          span{
             transform: scale(0);
          }
+      }
+   }
+   .footer{
+      
+      &__left{
+         width: 100%;
+         padding: 0px 0px;
+      }
+      &__body{
+         margin: 0px auto;
+         padding: 0px 0px 50px 0px;
+         text-align: center;
+      }
+      &__right{
+         flex-direction: column;
+            width: 100%;
+      }
+      &__name{
+         padding: 10px 20px;
+         border-radius: 10px;
+         background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.489) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247));
+         cursor: pointer;
+
+      }
+      &__nav{
+         display: none;
+         border-radius: 0 0 10px 10px;
+         background-color: rgba(71, 71, 71, 0);
+         transition: 1s;
+         padding: 10px 30px;
+      }
+      ._open ~ &__nav{
+         display: flex;
+      }
+      &__corner{
+         display: block;
       }
    }
 }
