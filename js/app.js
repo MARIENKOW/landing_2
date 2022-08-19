@@ -33,27 +33,7 @@ if (burger != null){
 }
 let names = document.querySelectorAll('.footer__name');
 let navs = document.querySelectorAll('.footer__nav');
-for(let i =0; i<names.length;i++){
-   let name = names[i];
-   let overflow = getComputedStyle(name).overflow;
-   if(overflow === 'hidden'){
-      name.nextElementSibling.style.height = '0px';
-      name.nextElementSibling.classList.add('_a');
-      name.addEventListener('click',function nameClick(){
-         name.classList.toggle('_open');
-         for(let j = 0;j<navs.length;j++){
-            let name = names[j];
-            let nav = navs[j];
-            if(j===i){
-               _slideToggle(nav,500);
-            }else{
-               _slideUp(nav,500);
-               name.classList.remove('_open');
-            }
-         }
-      })
-   }
-}
+
 let _slideUp = (target,duration = 500) => {
       if (!target.classList.contains('_a')){
          target.classList.add('_a');
@@ -72,5 +52,46 @@ let _slideToggle = (target,duration = 500) => {
       return _slideDown(target,duration);
    } else {
       return _slideUp(target,duration);
+   }
+}
+let prev=null;
+
+for(let i =0; i<names.length;i++){
+   let name = names[i];
+   let overflow = getComputedStyle(name).overflow;
+   if(overflow === 'hidden'){
+      name.nextElementSibling.style.height = '0px';
+      name.nextElementSibling.classList.add('_a');
+      name.addEventListener('click',function nameClick(){
+         name.classList.toggle('_open');
+
+
+         for(let j = 0;j<navs.length;j++){
+            let name = names[j];
+            let nav = navs[j];
+            if(j <= i && prev === i){
+               name.classList.toggle('_hover');
+            }else if(j <= i && prev !== i){
+               name.classList.add('_hover');
+
+            }
+            else{
+               name.classList.remove('_hover');
+            }
+            if(j===i){
+               _slideToggle(nav,500);
+            }else{
+               _slideUp(nav,500);
+               name.classList.remove('_open');
+            }
+         }
+         console.log(prev);
+         prev = i;
+      })
+   }else{
+      console.log('2');
+      name.nextElementSibling.style.height = '';
+      name.nextElementSibling.classList.remove('_a');
+
    }
 }

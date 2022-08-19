@@ -1120,11 +1120,11 @@ min-width: 100%;
       &__right{
          flex-direction: column;
          width: 100%;
-         gap: 10px;
+         gap: 5px;
       }
       &__name{
          padding: 10px 20px;
-         border-radius: 10px;
+         border-radius: 10px 10px 0 0;
          background-color: transparent;
          cursor: pointer;
          position: relative;
@@ -1136,11 +1136,43 @@ min-width: 100%;
             z-index: -1;
             pointer-events: none;
             top: 0;
-            left: 0;
-            background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247));
-            width: 120%;
+            left: -20%;
+            background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
+            width: 150%;
             height: 100%;
             transition: .3s;
+         }
+         &--1{
+         border-radius: 0px;
+
+            &::after{
+               content: '';
+               position: absolute;
+               z-index: -1;
+               pointer-events: none;
+               top: 0;
+               left:calc(-20% + -45px);
+               background: linear-gradient(-45deg,rgba(255, 255, 255, 0) ,rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
+               width: 150%;
+               height: 100%;
+               transition: .3s;
+            }
+         }
+         &--2{
+         border-radius: 0 0 10px 10px;
+
+            &::after{
+               content: '';
+               position: absolute;
+               z-index: -1;
+               pointer-events: none;
+               top: 0;
+               left:calc(-20% + -90px);
+               background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
+               width: 150%;
+               height: 100%;
+               transition: .3s;
+            }
          }
       }
       &__nav{
@@ -1155,9 +1187,19 @@ min-width: 100%;
             padding: 10px 0px 0px 0px;
          }
       }
-      ._open{
+      ._hover[class~="footer__name"]{
          &::after{
-            left: -20%;
+            left: 0;
+         }
+      }
+      ._hover[class~="footer__name--1"]{
+         &::after{
+            left: -50px;
+         }
+      }
+      ._hover[class~="footer__name--2"]{
+         &::after{
+            left: -100px;
          }
       }
       ._open ~ &__nav{

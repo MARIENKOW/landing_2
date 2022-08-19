@@ -1497,11 +1497,11 @@ h1, h2, h3, h4, h5, h6 {
         -ms-flex-direction: column;
             flex-direction: column;
     width: 100%;
-    gap: 10px;
+    gap: 5px;
   }
   .footer__name {
     padding: 10px 20px;
-    border-radius: 10px;
+    border-radius: 10px 10px 0 0;
     background-color: transparent;
     cursor: pointer;
     position: relative;
@@ -1514,10 +1514,46 @@ h1, h2, h3, h4, h5, h6 {
     z-index: -1;
     pointer-events: none;
     top: 0;
-    left: 0;
-    background: -o-linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247));
-    background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247));
-    width: 120%;
+    left: -20%;
+    background: -o-linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247) 80%);
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247) 80%);
+    width: 150%;
+    height: 100%;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+  .footer__name--1 {
+    border-radius: 0px;
+  }
+  .footer__name--1::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    top: 0;
+    left: calc(-20% - 45px);
+    background: -o-linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247) 80%);
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247) 80%);
+    width: 150%;
+    height: 100%;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
+    transition: 0.3s;
+  }
+  .footer__name--2 {
+    border-radius: 0 0 10px 10px;
+  }
+  .footer__name--2::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    pointer-events: none;
+    top: 0;
+    left: calc(-20% - 90px);
+    background: -o-linear-gradient(135deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247) 80%);
+    background: linear-gradient(-45deg, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.6) 10%, rgba(255, 255, 255, 0.1), #000, rgba(255, 255, 255, 0.247) 80%);
+    width: 150%;
     height: 100%;
     -webkit-transition: 0.3s;
     -o-transition: 0.3s;
@@ -1535,8 +1571,14 @@ h1, h2, h3, h4, h5, h6 {
   .footer__link:first-child {
     padding: 10px 0px 0px 0px;
   }
-  .footer ._open::after {
-    left: -20%;
+  .footer ._hover[class~=footer__name]::after {
+    left: 0;
+  }
+  .footer ._hover[class~=footer__name--1]::after {
+    left: -50px;
+  }
+  .footer ._hover[class~=footer__name--2]::after {
+    left: -100px;
   }
   ._open ~ .footer__nav {
     height: auto;
