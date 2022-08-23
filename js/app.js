@@ -6,6 +6,8 @@ let body = document.querySelector('body');
 let burger = document.querySelector('.header__burger');
 let names = document.querySelectorAll('.footer__name');
 let navs = document.querySelectorAll('.footer__nav');
+let sliders = document.querySelectorAll('._slider');
+
 let prev=null;
 if (header != null){
    window.addEventListener('scroll',function headerScroll(){
@@ -104,7 +106,7 @@ function namesHeight(){
    }
 }
 namesHeight();
-window.addEventListener('resize',namesHeight);
+// window.addEventListener('resize',namesHeight);
 spoiler();
 let _slideUpFlex = (target,duration = 500) => {
    if (!target.classList.contains('_a')){
@@ -116,7 +118,6 @@ let _slideDownFlex = (target,duration = 500) => {
    if (target.classList.contains('_a')){
       target.classList.remove('_a');
       let height = target.scrollHeight;
-      console.log(height)
       target.style.flex = `0 0 ${height}px`;
 }
 }
@@ -127,21 +128,20 @@ let _slideToggleFlex = (target,duration = 500) => {
       return _slideUpFlex(target,duration);
    }
 }
-let sliders = document.querySelectorAll('._slider');
-for(let i=0;i<sliders.length;i++){
-   let slider = sliders[i];
-   slider.addEventListener('click',function copyrightClick(){
-      if(slider.classList.contains('_hidden')){
-         slider.parentElement.classList.toggle('_open');
-         _slideToggleFlex(slider.nextElementSibling);
-         console.log(slider.nextElementSibling)
-      }
-   })
+function spoilerFlex(){
+   for(let i=0;i<sliders.length;i++){
+      let slider = sliders[i];
+      slider.addEventListener('click',function copyrightClick(){
+         if(slider.classList.contains('_hidden')){
+            slider.parentElement.classList.toggle('_open');
+            _slideToggleFlex(slider.nextElementSibling);
+         }
+      })
+   }
 }
 function copyrightFlex(target){
    for(let slider of sliders){
       let target = slider;
-      console.log(target);
       let overflow = getComputedStyle(target.nextElementSibling).overflow;
       target.parentElement.classList.remove('_open')
       if(overflow === 'hidden'){
@@ -153,12 +153,11 @@ function copyrightFlex(target){
          target.nextElementSibling.style.flex = '';
          target.nextElementSibling.classList.remove('_a');
          target.classList.remove('_hidden');
-
       }
    }
 }
 copyrightFlex();
-window.addEventListener('resize',copyrightFlex);
-let review = document.querySelector('.review__body');
-console.log(review.scrollHeight)
+// window.addEventListener('resize',copyrightFlex);
+spoilerFlex();
+
 

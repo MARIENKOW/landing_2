@@ -307,13 +307,59 @@ min-width: 100%;
       max-width: 1298px;
    }
    &__inner {
+   }
+   &__tap{
+      padding: 20px;
+      width: 100%;
+      display: none;
+      justify-content: center;
+      border-radius: 20px;
+      position: relative;
+      z-index: 2;
+      overflow: hidden;
+      background-color: #000;
+      top: 0;
+      &::after{
+         content: '';
+         position: absolute;
+         z-index: -1;
+         pointer-events: none;
+         top: 0;
+         left: -20%;
+         background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
+         width: 150%;
+         height: 100%;
+         transition: .6s;
+      }
+   }
+   &__btn{
+      display: inline-block;
+      color: #fff;
+      font-size: $fontsize18;
+      text-transform: uppercase;
+      letter-spacing: 7px;
+      line-height: 32px;
+      font-weight: 600;
+      position: relative;
+      &::after{
+         position: absolute;
+         top: 50%;
+         transform: translateY(-50%);
+         left: calc(100% + 5px);
+         content: '';
+         background: url(../img/footer/corner.png) no-repeat right;
+         background-size: 100%;
+         height: 50%;
+         aspect-ratio: 1/1;
+         transition: .3s;
+      }
+   }
+   &__body{
       display: flex;
       justify-content: space-between;
       padding: 60px 0px 40px 0px;
       gap: 10px;
-
    }
-
    &__block {
       display: flex;
       flex-direction: column;
@@ -1008,7 +1054,7 @@ min-width: 100%;
       }
    }
    .brends{
-      &__inner{
+      &__body{
          flex-direction: column;
          gap: 50px;
       }
@@ -1153,6 +1199,37 @@ min-width: 100%;
          }
          span{
             transform: scale(0);
+         }
+      }
+   }
+   .brends{
+      &__inner{
+         padding: 20px 0px;
+         display: flex;
+         flex-direction: column;
+      }
+      &__body{
+         padding: 0px 0px;
+         gap: 0;
+         overflow: hidden;
+         flex: 0 0 0;
+         transition: .5s;
+      }
+      &__block{
+         padding-top: 40px;
+      }
+      &__tap{
+         display: flex;
+      }
+      ._open &__btn{
+         &::after{
+            transform: translateY(-50%) rotateX(180deg);
+
+         }
+      }
+      ._open &__tap{
+         &::after{
+            left: 0;
          }
       }
    }
