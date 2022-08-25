@@ -180,31 +180,42 @@ window.addEventListener('scroll',function(){
 })
 const paralax = document.querySelector('.paralax');
 const paralaxItem = document.querySelectorAll('.paralax__item');
-console.log(paralaxItem)
+let x = 0;
+let y = 0;
 paralax.addEventListener('mousemove',function mouse(event){
-   const max = 40;
-   const may = 7;
+   x = event.clientX;
+   y = event.clientY;
 
+   const max = 30;
+   const may = 10;
    let difX = paralax.offsetWidth/2-event.clientX;
    let dx = max*(difX/((paralax.offsetWidth/2) /100)/100)
    let difY = paralax.offsetHeight/2-event.clientY;
    let dy = may*(difY/((paralax.offsetHeight/2) /100)/100)
+   if(!event.sourceCapabilities.firesTouchEvents){
       for(let i of paralaxItem){
          let pal = i;
-         pal.style.transition = `.3s`
+         pal.style.transition = `0.1s`
 
          if (pal.classList.contains('min')){
-            const max = 40;
-            const may = 7;
-            let difX = paralax.offsetWidth/2-event.clientX;
-            let dx = max*(difX/((paralax.offsetWidth/2) /100)/100)
-            let difY = paralax.offsetHeight/2-event.clientY;
-            let dy = may*(difY/((paralax.offsetHeight/2) /100)/100)
             pal.style.transform = `translate3d(${-dx}px,${dy}px,${dx}px)`
          }else if(!pal.classList.contains('miny')){
             pal.style.transform = `translate3d(${dx}px,${-dy}px,${dx}px)`
          }else{
             pal.style.transform = `translate3d(${dx}px,${dy}px,0)`
          }
+      }
    }
 })
+setInterval(function(){
+console.log(x,y)
+
+   if (x === 0 && y ===0){
+      for(let i of paralaxItem){
+         i.style.transition = `1s`
+         i.style.transform = ``
+      }
+   }
+   x = 0;
+   y = 0;
+},300)
