@@ -89,23 +89,25 @@ function namesHeight(){
    for(let i =0; i<names.length;i++){
       let name = names[i];
       let overflow = getComputedStyle(name).overflow;
-      name.classList.remove('_open');
-      name.classList.remove('_hover');
+
       if(overflow === 'hidden'){
-         name.nextElementSibling.style.height = '0px';
-         name.nextElementSibling.classList.add('_a');
+         if(!name.classList.contains('_open')){
+            name.nextElementSibling.classList.add('_a');
+         }
          name.classList.add('_hidden');
 
       }else{
          name.nextElementSibling.style.height = '';
          name.nextElementSibling.classList.remove('_a');
+         name.classList.remove('_open');
+         name.classList.remove('_hover');
          name.classList.remove('_hidden');
 
       }
    }
 }
 namesHeight();
-// window.addEventListener('resize',namesHeight);
+window.addEventListener('resize',namesHeight);
 spoiler();
 let _slideUpFlex = (target,duration = 500) => {
    if (!target.classList.contains('_a')){
@@ -142,21 +144,22 @@ function copyrightFlex(target){
    for(let slider of sliders){
       let target = slider;
       let overflow = getComputedStyle(target.nextElementSibling).overflow;
-      target.parentElement.classList.remove('_open')
       if(overflow === 'hidden'){
-         target.nextElementSibling.style.flex = '0 0 0';
-         target.nextElementSibling.classList.add('_a');
+         if(!target.parentElement.classList.contains('_open')){
+            target.nextElementSibling.classList.add('_a');
+         }
          target.classList.add('_hidden');
 
       }else{
          target.nextElementSibling.style.flex = '';
          target.nextElementSibling.classList.remove('_a');
+         target.parentElement.classList.remove('_open')
          target.classList.remove('_hidden');
       }
    }
 }
 copyrightFlex();
-// window.addEventListener('resize',copyrightFlex);
+window.addEventListener('resize',copyrightFlex);
 spoilerFlex();
 let bod = document.querySelector('.wrapper').children;
 for (let i = 0;i<bod.length;i++){
@@ -166,11 +169,11 @@ for (let i = 0;i<bod.length;i++){
    }
 }
 window.addEventListener('scroll',function(){
-   let break1 = window.scrollY + window.innerHeight;
+   let break1 = window.scrollY + window.innerHeight - window.innerHeight/5;
    for (let i = 0;i<bod.length;i++){
       let bodyElement = bod[i];
       if(i>=1){
-         let bodyTop = bodyElement.getBoundingClientRect().top + window.scrollY
+         let bodyTop = bodyElement.getBoundingClientRect().top + window.scrollY +200
          if(break1 >= bodyTop){
             bodyElement.classList.add('_animationEnd')
          }
@@ -208,7 +211,6 @@ paralax.addEventListener('mousemove',function mouse(event){
    }
 })
 setInterval(function(){
-console.log(x,y)
 
    if (x === 0 && y ===0){
       for(let i of paralaxItem){
