@@ -7,7 +7,6 @@ let burger = document.querySelector('.header__burger');
 let names = document.querySelectorAll('.footer__name');
 let navs = document.querySelectorAll('.footer__nav');
 let sliders = document.querySelectorAll('._slider');
-
 let prev=null;
 if (header != null){
    window.addEventListener('scroll',function headerScroll(){
@@ -159,5 +158,53 @@ function copyrightFlex(target){
 copyrightFlex();
 // window.addEventListener('resize',copyrightFlex);
 spoilerFlex();
+let bod = document.querySelector('.wrapper').children;
+for (let i = 0;i<bod.length;i++){
+   let bodyElement = bod[i];
+   if(i>1){
+      bodyElement.classList.add('_animationStart')
+   }
+}
+window.addEventListener('scroll',function(){
+   let break1 = window.scrollY + window.innerHeight;
+   for (let i = 0;i<bod.length;i++){
+      let bodyElement = bod[i];
+      if(i>=1){
+         let bodyTop = bodyElement.getBoundingClientRect().top + window.scrollY
+         if(break1 >= bodyTop){
+            bodyElement.classList.add('_animationEnd')
+         }
+      }
+   }
 
+})
+const paralax = document.querySelector('.paralax');
+const paralaxItem = document.querySelectorAll('.paralax__item');
+console.log(paralaxItem)
+paralax.addEventListener('mousemove',function mouse(event){
+   const max = 40;
+   const may = 7;
 
+   let difX = paralax.offsetWidth/2-event.clientX;
+   let dx = max*(difX/((paralax.offsetWidth/2) /100)/100)
+   let difY = paralax.offsetHeight/2-event.clientY;
+   let dy = may*(difY/((paralax.offsetHeight/2) /100)/100)
+      for(let i of paralaxItem){
+         let pal = i;
+         pal.style.transition = `.3s`
+
+         if (pal.classList.contains('min')){
+            const max = 40;
+            const may = 7;
+            let difX = paralax.offsetWidth/2-event.clientX;
+            let dx = max*(difX/((paralax.offsetWidth/2) /100)/100)
+            let difY = paralax.offsetHeight/2-event.clientY;
+            let dy = may*(difY/((paralax.offsetHeight/2) /100)/100)
+            pal.style.transform = `translate3d(${-dx}px,${dy}px,${dx}px)`
+         }else if(!pal.classList.contains('miny')){
+            pal.style.transform = `translate3d(${dx}px,${-dy}px,${dx}px)`
+         }else{
+            pal.style.transform = `translate3d(${dx}px,${dy}px,0)`
+         }
+   }
+})

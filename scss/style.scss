@@ -319,6 +319,8 @@ min-width: 100%;
       overflow: hidden;
       background-color: #000;
       top: 0;
+      cursor: pointer;
+
       &::after{
          content: '';
          position: absolute;
@@ -326,10 +328,15 @@ min-width: 100%;
          pointer-events: none;
          top: 0;
          left: -20%;
-         background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
+         background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000 55%,rgba(255, 255, 255, 0.2) 63%,#000 66%,rgba(255, 255, 255, 0.4)80%);
          width: 150%;
          height: 100%;
          transition: .6s;
+         animation:brends 5s ease-in-out 0s infinite alternate;
+         @keyframes brends {
+            0%{transform: translateX(0);}
+            100%{transform: translateX(-17%);}
+         }
       }
    }
    &__btn{
@@ -606,6 +613,7 @@ min-width: 100%;
       overflow: hidden;
       background-color: #000;
       top: 15px;
+      cursor: pointer;
       &::after{
          content: '';
          position: absolute;
@@ -613,10 +621,17 @@ min-width: 100%;
          pointer-events: none;
          top: 0;
          left: -20%;
-         background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
+         background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000 55%,rgba(255, 255, 255, 0.2) 63%,#000 66%,rgba(255, 255, 255, 0.4)80%);
          width: 150%;
          height: 100%;
+         // left: 0;
+         // width: 100%;
          transition: .6s;
+         animation:brends 7s ease-in-out 0s infinite alternate;
+         @keyframes brends {
+            0%{transform: translateX(0);}
+            100%{transform: translateX(-17%);}
+         }
       }
    }
    &__btn{
@@ -1220,6 +1235,7 @@ min-width: 100%;
       }
       &__tap{
          display: flex;
+
       }
       ._open &__btn{
          &::after{
@@ -1230,6 +1246,7 @@ min-width: 100%;
       ._open &__tap{
          &::after{
             left: 0;
+            animation-play-state: paused;
          }
       }
    }
@@ -1250,6 +1267,7 @@ min-width: 100%;
       ._open &__tap{
          &::after{
             left: 0;
+            animation-play-state: paused;
          }
       }
       &__body {
@@ -1316,32 +1334,15 @@ min-width: 100%;
          border-radius: 0px;
 
             &::after{
-               content: '';
-               position: absolute;
-               z-index: -1;
-               pointer-events: none;
-               top: 0;
                left:calc(-20% + -45px);
-               background: linear-gradient(-45deg,rgba(255, 255, 255, 0) ,rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
-               width: 150%;
-               height: 100%;
-               transition: .6s;
+
             }
          }
          &--2{
          border-radius: 0 0 10px 10px;
 
             &::after{
-               content: '';
-               position: absolute;
-               z-index: -1;
-               pointer-events: none;
-               top: 0;
                left:calc(-20% + -90px);
-               background: linear-gradient(-45deg,rgba(255, 255, 255, 0),rgba(255, 255, 255, 0.6) 10%,rgba(255, 255, 255, 0.1),#000,rgba(255, 255, 255, 0.247)80%);
-               width: 150%;
-               height: 100%;
-               transition: .6s;
             }
          }
       }
@@ -1396,6 +1397,7 @@ min-width: 100%;
       }
       &__copyright{
          position: relative;
+         cursor: pointer;
          &::after{
             position: absolute;
             top: 50%;
@@ -1407,7 +1409,6 @@ min-width: 100%;
             height: 50%;
             aspect-ratio: 1/1;
             transition: .3s;
-
          }
       }
       &__info{
@@ -1420,7 +1421,6 @@ min-width: 100%;
       ._open &__copyright{
          &::after{
             transform: translateY(-50%) rotateX(180deg);
-
          }
       }
       &__go{
@@ -1428,4 +1428,13 @@ min-width: 100%;
       }
    }
 }
-
+._animationStart{
+   transform: translateY(200px);
+   transition:0s;
+   opacity: 0;
+}
+._animationEnd{
+   transition:.6s;
+   transform: translateY(0);
+   opacity: 1;
+}
