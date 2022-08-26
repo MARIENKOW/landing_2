@@ -7,6 +7,11 @@ let burger = document.querySelector('.header__burger');
 let names = document.querySelectorAll('.footer__name');
 let navs = document.querySelectorAll('.footer__nav');
 let sliders = document.querySelectorAll('._slider');
+let bod = document.querySelector('.wrapper').children;
+const paralax = document.querySelector('.paralax');
+const paralaxItem = document.querySelectorAll('.paralax__item');
+let x = 0;
+let y = 0;
 let prev=null;
 if (header != null){
    window.addEventListener('scroll',function headerScroll(){
@@ -161,14 +166,13 @@ function copyrightFlex(target){
 copyrightFlex();
 window.addEventListener('resize',copyrightFlex);
 spoilerFlex();
-let bod = document.querySelector('.wrapper').children;
 for (let i = 0;i<bod.length;i++){
    let bodyElement = bod[i];
    if(i>1){
       bodyElement.classList.add('_animationStart')
    }
 }
-window.addEventListener('scroll',function(){
+window.addEventListener('scroll',function(event){
    let break1 = window.scrollY + window.innerHeight - window.innerHeight/5;
    for (let i = 0;i<bod.length;i++){
       let bodyElement = bod[i];
@@ -181,10 +185,6 @@ window.addEventListener('scroll',function(){
    }
 
 })
-const paralax = document.querySelector('.paralax');
-const paralaxItem = document.querySelectorAll('.paralax__item');
-let x = 0;
-let y = 0;
 paralax.addEventListener('mousemove',function mouse(event){
    x = event.clientX;
    y = event.clientY;
@@ -221,3 +221,29 @@ setInterval(function(){
    x = 0;
    y = 0;
 },300)
+let paralaxScroll = document.querySelectorAll('.paralaxScrollItem');
+const per = 30;
+console.log(paralaxScroll);
+window.addEventListener('scroll',function(){
+   let break1= this.window.scrollY + this.window.innerHeight;
+
+   for(let paralaxScrollItem of paralaxScroll){
+      let paralaxTop = paralaxScrollItem.getBoundingClientRect().top + this.window.scrollY
+      let paralaxTopHeight = paralaxScrollItem.getBoundingClientRect().bottom + this.window.scrollY
+      paralaxScrollItem.style.transition = `.3s`
+      let test1 = paralaxScrollItem.getBoundingClientRect().top + this.window.scrollY + (paralaxScrollItem.offsetHeight/2)
+      let test2 = this.window.scrollY + this.window.innerHeight/2;
+      let test3 = (window.innerHeight-paralaxScrollItem.offsetHeight)/2;
+      let test4 = test2-test1
+      let test5 = test4 / test3
+      let test6 = per * test5
+      if(break1>=paralaxTopHeight  && this.window.scrollY <= paralaxTop){
+         paralaxScrollItem.style.transform = `translateY(${test6}px)`
+      }
+      else{
+         paralaxScrollItem.style.transition = `1s`;
+         paralaxScrollItem.style.transform = ``;
+
+      }
+   }
+})
