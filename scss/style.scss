@@ -1262,8 +1262,10 @@ min-width: 100%;
    }
    .review {
       background-color: rgb(255, 255, 255);
+      
       &__inner{
          flex-direction: column;
+         padding: 20px 0px;
       }
       &__tap{
          display: flex;
@@ -1444,12 +1446,13 @@ min-width: 100%;
    }
 }
 ._animationStart{
-   transform: translateY(-200px);
+   transform: scale(0.6);
    transition:0s;
-   opacity: 0;
+   opacity:1;
+
 }
 ._animationEnd{
    transition:1s;
-   transform: translateY(0);
+   transform: scale(1);
    opacity: 1;
 }

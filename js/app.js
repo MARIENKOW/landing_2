@@ -173,13 +173,13 @@ for (let i = 0;i<bod.length;i++){
    }
 }
 window.addEventListener('scroll',function(event){
-   let break1 = window.scrollY + window.innerHeight - window.innerHeight/5;
+   let break1 = window.scrollY + window.innerHeight - window.innerHeight/3;
    for (let i = 0;i<bod.length;i++){
       let bodyElement = bod[i];
       if(i>=1){
-         let bodyTop = bodyElement.getBoundingClientRect().top + window.scrollY +200
+         let bodyTop = bodyElement.getBoundingClientRect().bottom + window.scrollY
          if(break1 >= bodyTop){
-            bodyElement.classList.add('_animationEnd')
+            bodyElement.nextElementSibling.classList.add('_animationEnd')
          }
       }
    }
@@ -210,32 +210,46 @@ paralax.addEventListener('mousemove',function mouse(event){
       }
    }
 })
+let j = null;
+let h = null
 setInterval(function(){
+   if (x === 0 && y ===0 && j !==x  && h !==y){
+      console.log('m');
 
-   if (x === 0 && y ===0){
       for(let i of paralaxItem){
          i.style.transition = `1s`
          i.style.transform = ``
       }
-      for(let i of paralaxScroll){
-         i.style.transition = `1s`
-         i.style.transform = ``
-      }
    }
+   j = x;
+   h = y;
    x = 0;
    y = 0;
 },300)
+let dbl = null
+let prevs = null;
+setInterval(function(){
+   let sc = window.scrollY
+   if(prevs === sc){
+      if (dbl !== prevs){
+         console.log('s');
+
+         for(let i of paralaxScroll){
+
+            setTimeout(function(){
+               i.style.transition = `1s`;
+               i.style.transform = ``;
+            },500)
+         }
+         dbl = prevs;
+      }
+   }
+   prevs = sc;
+},300)
 let paralaxScroll = document.querySelectorAll('.paralaxScrollItem');
-const per = 50;
-console.log(paralaxScroll);
+const per = 70;
 window.addEventListener('scroll',function(){
-   let break1= this.window.scrollY + this.window.innerHeight;
-
    for(let paralaxScrollItem of paralaxScroll){
-      let paralaxTop = paralaxScrollItem.getBoundingClientRect().top + this.window.scrollY
-      let paralaxH = paralaxTop+paralaxScrollItem.offsetHeight/2
-
-      let paralaxTopHeight = paralaxScrollItem.getBoundingClientRect().bottom + this.window.scrollY
       paralaxScrollItem.style.transition = `.3s`
       let test1 = paralaxScrollItem.getBoundingClientRect().top + this.window.scrollY + (paralaxScrollItem.offsetHeight/2)
       let test2 = this.window.scrollY + this.window.innerHeight/2;
@@ -243,18 +257,12 @@ window.addEventListener('scroll',function(){
       let test4 = test2-test1
       let test5 = test4 / test3
       let test6 = per * test5
-      // if(break1>=paralaxH  && this.window.scrollY <= paralaxH && !paralaxScrollItem.classList.contains('_none')){
+      if (!paralaxScrollItem.classList.contains('_reverse')){
          paralaxScrollItem.style.transform = `translateY(${-test6}px)`
-      // }
-      // else{
-      //    paralaxScrollItem.classList.add('_none')
-      //    paralaxScrollItem.style.transition = `1s`;
-      //    paralaxScrollItem.style.transform = ``;
-      //    this.setTimeout(function(){
-      //    paralaxScrollItem.classList.remove('_none')
-
-      //    },3000)
-
-      // }
+      }else{
+         let per2 = 30;
+         let test6 = per2 * test5
+         paralaxScrollItem.style.transform = `translateY(${-test6}px)`
+      }
    }
 })
