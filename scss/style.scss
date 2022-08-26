@@ -359,7 +359,8 @@ min-width: 100%;
          height: 50%;
          aspect-ratio: 1/1;
          transition: .3s;
-         animation:bre 2s cubic-bezier(.65,.16,.38,.85) 0s infinite alternate;
+         transform: rotateY(90deg);
+         // animation:bre 2s cubic-bezier(.65,.16,.38,.85) 0s infinite alternate;
 
       }
    }
