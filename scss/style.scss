@@ -302,6 +302,8 @@ min-width: 100%;
 }
 
 .brends {
+   position: relative;
+   z-index: 1;
    &--container {
       max-width: 1298px;
    }

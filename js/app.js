@@ -217,6 +217,10 @@ setInterval(function(){
          i.style.transition = `1s`
          i.style.transform = ``
       }
+      for(let i of paralaxScroll){
+         i.style.transition = `1s`
+         i.style.transform = ``
+      }
    }
    x = 0;
    y = 0;
@@ -229,6 +233,8 @@ window.addEventListener('scroll',function(){
 
    for(let paralaxScrollItem of paralaxScroll){
       let paralaxTop = paralaxScrollItem.getBoundingClientRect().top + this.window.scrollY
+      let paralaxH = paralaxTop+paralaxScrollItem.offsetHeight/2
+
       let paralaxTopHeight = paralaxScrollItem.getBoundingClientRect().bottom + this.window.scrollY
       paralaxScrollItem.style.transition = `.3s`
       let test1 = paralaxScrollItem.getBoundingClientRect().top + this.window.scrollY + (paralaxScrollItem.offsetHeight/2)
@@ -237,13 +243,18 @@ window.addEventListener('scroll',function(){
       let test4 = test2-test1
       let test5 = test4 / test3
       let test6 = per * test5
-      if(break1>=paralaxTopHeight  && this.window.scrollY <= paralaxTop){
-         paralaxScrollItem.style.transform = `translateY(${test6}px)`
-      }
-      else{
-         paralaxScrollItem.style.transition = `1s`;
-         paralaxScrollItem.style.transform = ``;
+      // if(break1>=paralaxH  && this.window.scrollY <= paralaxH && !paralaxScrollItem.classList.contains('_none')){
+         paralaxScrollItem.style.transform = `translateY(${-test6}px)`
+      // }
+      // else{
+      //    paralaxScrollItem.classList.add('_none')
+      //    paralaxScrollItem.style.transition = `1s`;
+      //    paralaxScrollItem.style.transform = ``;
+      //    this.setTimeout(function(){
+      //    paralaxScrollItem.classList.remove('_none')
 
-      }
+      //    },3000)
+
+      // }
    }
 })

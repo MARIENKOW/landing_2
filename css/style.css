@@ -347,6 +347,10 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
 }
 
+.brends {
+  position: relative;
+  z-index: 1;
+}
 .brends--container {
   max-width: 1298px;
 }
