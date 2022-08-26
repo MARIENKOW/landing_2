@@ -226,7 +226,7 @@ setInterval(function(){
    y = 0;
 },300)
 let paralaxScroll = document.querySelectorAll('.paralaxScrollItem');
-const per = 30;
+const per = 50;
 console.log(paralaxScroll);
 window.addEventListener('scroll',function(){
    let break1= this.window.scrollY + this.window.innerHeight;
@@ -239,7 +239,7 @@ window.addEventListener('scroll',function(){
       paralaxScrollItem.style.transition = `.3s`
       let test1 = paralaxScrollItem.getBoundingClientRect().top + this.window.scrollY + (paralaxScrollItem.offsetHeight/2)
       let test2 = this.window.scrollY + this.window.innerHeight/2;
-      let test3 = (window.innerHeight-paralaxScrollItem.offsetHeight)/2;
+      let test3 = (window.innerHeight+paralaxScrollItem.offsetHeight)/2;
       let test4 = test2-test1
       let test5 = test4 / test3
       let test6 = per * test5
