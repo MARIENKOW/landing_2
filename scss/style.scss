@@ -1448,11 +1448,10 @@ min-width: 100%;
 ._animationStart{
    transform: scale(0.6);
    transition:0s;
-   opacity:1;
 
 }
 ._animationEnd{
    transition:1s;
    transform: scale(1);
-   opacity: 1;
+
 }

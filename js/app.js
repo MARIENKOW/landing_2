@@ -8,11 +8,73 @@ let names = document.querySelectorAll('.footer__name');
 let navs = document.querySelectorAll('.footer__nav');
 let sliders = document.querySelectorAll('._slider');
 let bod = document.querySelector('.wrapper').children;
+const links = document.querySelectorAll('.header__link');
 const paralax = document.querySelector('.paralax');
 const paralaxItem = document.querySelectorAll('.paralax__item');
+const folow = document.querySelector('.folow');
+const shop = document.querySelector('.shop');
+const footer = document.querySelector('.footer');
+const drink = document.querySelector('.drink');
+const intro = document.querySelector('.intro');
+const headerLogo = document.querySelector('.header__logo');
+let paralaxScroll = document.querySelectorAll('.paralaxScrollItem');
+const per = 70;
 let x = 0;
 let y = 0;
 let prev=null;
+let ev = new Event('click');
+headerInner.addEventListener('click',function(event){
+   for(let element of event.path){
+      if (element === headerLogo){
+         intro.scrollIntoView({
+            behavior:'smooth',
+         })
+         if(headerInner.classList.contains('_active')){
+            burger.dispatchEvent(ev);
+         }
+      }
+   }
+   for(let i = 0;i<links.length;i++){
+      const link = links[i];
+      if(event.target === links[0] && i ===0){
+         shop.scrollIntoView({
+            behavior:"smooth",
+         })
+         if(headerInner.classList.contains('_active')){
+            burger.dispatchEvent(ev);
+         }
+      }else if(event.target === links[1] && i ===1){
+         footer.scrollIntoView({
+            behavior:"smooth",
+         })
+         if(headerInner.classList.contains('_active')){
+            burger.dispatchEvent(ev);
+         }
+      }else if(event.target === links[2] && i ===2){
+         drink.scrollIntoView({
+            behavior:"smooth",
+         })
+         if(headerInner.classList.contains('_active')){
+            burger.dispatchEvent(ev);
+         }
+      }else if(event.target === links[3] && i ===3){
+         folow.scrollIntoView({
+            behavior:"smooth",
+         })
+         if(headerInner.classList.contains('_active')){
+            burger.dispatchEvent(ev);
+         }
+      }else if(event.target === links[4] && i ===4){
+         if(headerInner.classList.contains('_active')){
+            burger.dispatchEvent(ev);
+         }
+      }else if(event.target === links[5] && i ===5){
+         if(headerInner.classList.contains('_active')){
+            burger.dispatchEvent(ev);
+         }
+      }
+   }
+})
 if (header != null){
    window.addEventListener('scroll',function headerScroll(){
       let headerTop = window.scrollY;
@@ -63,41 +125,41 @@ let _slideToggle = (target,duration = 500) => {
 function spoiler(){
    for(let i =0; i<names.length;i++){
       let name = names[i];
-         name.addEventListener('click',function nameClick(){
-            if(name.classList.contains('_hidden')){
-               name.classList.toggle('_open');
-               for(let j = 0;j<navs.length;j++){
-                  let name = names[j];
-                  let nav = navs[j];
-                  if(j <= i && prev === i){
-                     name.classList.toggle('_hover');
-                  }else if(j <= i && prev !== i){
-                     name.classList.add('_hover');
-
-                  }
-                  else{
-                     name.classList.remove('_hover');
-                  }
-                  if(j===i){
-                     _slideToggle(nav,500);
-                  }else{
-                     _slideUp(nav,500);
-                     name.classList.remove('_open');
-                  }
+      name.addEventListener('click',function nameClick(){
+         if(name.classList.contains('_hidden')){
+            name.classList.toggle('_open');
+            for(let j = 0;j<navs.length;j++){
+               let name = names[j];
+               let nav = navs[j];
+               if(j <= i && prev === i){
+                  name.classList.toggle('_hover');
+               }else if(j <= i && prev !== i){
+                  name.classList.add('_hover');
                }
-               prev = i;
+               else{
+                  name.classList.remove('_hover');
+               }
+               if(j===i){
+                  _slideToggle(nav,500);
+               }else{
+                  _slideUp(nav,500);
+                  name.classList.remove('_open');
+               }
             }
-         })
+            prev = i;
+         }
+      })
    }
 }
 function namesHeight(){
    for(let i =0; i<names.length;i++){
       let name = names[i];
       let overflow = getComputedStyle(name).overflow;
-
       if(overflow === 'hidden'){
          if(!name.classList.contains('_open')){
             name.nextElementSibling.classList.add('_a');
+            name.nextElementSibling.style.height = '0px';
+
          }
          name.classList.add('_hidden');
 
@@ -168,7 +230,9 @@ window.addEventListener('resize',copyrightFlex);
 spoilerFlex();
 for (let i = 0;i<bod.length;i++){
    let bodyElement = bod[i];
-   if(i>1){
+   let bk = bod.length - 1;
+
+   if(i>1 && i<bk){
       bodyElement.classList.add('_animationStart')
    }
 }
@@ -176,14 +240,15 @@ window.addEventListener('scroll',function(event){
    let break1 = window.scrollY + window.innerHeight - window.innerHeight/3;
    for (let i = 0;i<bod.length;i++){
       let bodyElement = bod[i];
-      if(i>=1){
+      let bk = bod.length - 2;
+      if(i>=1 && i <bk){
          let bodyTop = bodyElement.getBoundingClientRect().bottom + window.scrollY
          if(break1 >= bodyTop){
             bodyElement.nextElementSibling.classList.add('_animationEnd')
+
          }
       }
    }
-
 })
 paralax.addEventListener('mousemove',function mouse(event){
    x = event.clientX;
@@ -214,8 +279,6 @@ let j = null;
 let h = null
 setInterval(function(){
    if (x === 0 && y ===0 && j !==x  && h !==y){
-      console.log('m');
-
       for(let i of paralaxItem){
          i.style.transition = `1s`
          i.style.transform = ``
@@ -232,10 +295,7 @@ setInterval(function(){
    let sc = window.scrollY
    if(prevs === sc){
       if (dbl !== prevs){
-         console.log('s');
-
          for(let i of paralaxScroll){
-
             setTimeout(function(){
                i.style.transition = `1s`;
                i.style.transform = ``;
@@ -246,8 +306,6 @@ setInterval(function(){
    }
    prevs = sc;
 },300)
-let paralaxScroll = document.querySelectorAll('.paralaxScrollItem');
-const per = 70;
 window.addEventListener('scroll',function(){
    for(let paralaxScrollItem of paralaxScroll){
       paralaxScrollItem.style.transition = `.3s`
