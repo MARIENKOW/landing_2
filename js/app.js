@@ -22,16 +22,21 @@ const per = 70;
 let x = 0;
 let y = 0;
 let prev=null;
+let j = null;
+let h = null;
+let dbl = null;
+let prevs = null;
 let ev = new Event('click');
 headerInner.addEventListener('click',function(event){
    for(let element of event.path){
       if (element === headerLogo){
-         intro.scrollIntoView({
-            behavior:'smooth',
-         })
          if(headerInner.classList.contains('_active')){
             burger.dispatchEvent(ev);
          }
+         console.log(element);
+         intro.scrollIntoView({
+            behavior:'smooth',
+         })
       }
    }
    for(let i = 0;i<links.length;i++){
@@ -275,8 +280,6 @@ paralax.addEventListener('mousemove',function mouse(event){
       }
    }
 })
-let j = null;
-let h = null
 setInterval(function(){
    if (x === 0 && y ===0 && j !==x  && h !==y){
       for(let i of paralaxItem){
@@ -289,8 +292,6 @@ setInterval(function(){
    x = 0;
    y = 0;
 },300)
-let dbl = null
-let prevs = null;
 setInterval(function(){
    let sc = window.scrollY
    if(prevs === sc){
