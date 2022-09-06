@@ -27,59 +27,67 @@ let h = null;
 let dbl = null;
 let prevs = null;
 let ev = new Event('click');
-headerInner.addEventListener('click',function(event){
-   for(let element of event.path){
-      if (element === headerLogo){
-         if(headerInner.classList.contains('_active')){
-            burger.dispatchEvent(ev);
-         }
-         console.log(element);
-         intro.scrollIntoView({
-            behavior:'smooth',
-         })
-      }
-   }
-   for(let i = 0;i<links.length;i++){
-      const link = links[i];
-      if(event.target === links[0] && i ===0){
-         shop.scrollIntoView({
-            behavior:"smooth",
-         })
-         if(headerInner.classList.contains('_active')){
-            burger.dispatchEvent(ev);
-         }
-      }else if(event.target === links[1] && i ===1){
-         footer.scrollIntoView({
-            behavior:"smooth",
-         })
-         if(headerInner.classList.contains('_active')){
-            burger.dispatchEvent(ev);
-         }
-      }else if(event.target === links[2] && i ===2){
-         drink.scrollIntoView({
-            behavior:"smooth",
-         })
-         if(headerInner.classList.contains('_active')){
-            burger.dispatchEvent(ev);
-         }
-      }else if(event.target === links[3] && i ===3){
-         folow.scrollIntoView({
-            behavior:"smooth",
-         })
-         if(headerInner.classList.contains('_active')){
-            burger.dispatchEvent(ev);
-         }
-      }else if(event.target === links[4] && i ===4){
-         if(headerInner.classList.contains('_active')){
-            burger.dispatchEvent(ev);
-         }
-      }else if(event.target === links[5] && i ===5){
-         if(headerInner.classList.contains('_active')){
-            burger.dispatchEvent(ev);
-         }
-      }
-   }
-})
+headerLogo.addEventListener('click',function(){
+   if(headerInner.classList.contains('_active')){
+   burger.dispatchEvent(ev);
+}
+   intro.scrollIntoView({
+   behavior:'smooth',
+   })
+});
+// headerInner.addEventListener('click',function(event){
+//    for(let element of event.path){
+//       if (element === headerLogo){
+//          if(headerInner.classList.contains('_active')){
+//             burger.dispatchEvent(ev);
+//          }
+//          console.log(element);
+//          intro.scrollIntoView({
+//             behavior:'smooth',
+//          })
+//       }
+//    }
+//    for(let i = 0;i<links.length;i++){
+//       const link = links[i];
+//       if(event.target === links[0] && i ===0){
+//          shop.scrollIntoView({
+//             behavior:"smooth",
+//          })
+//          if(headerInner.classList.contains('_active')){
+//             burger.dispatchEvent(ev);
+//          }
+//       }else if(event.target === links[1] && i ===1){
+//          footer.scrollIntoView({
+//             behavior:"smooth",
+//          })
+//          if(headerInner.classList.contains('_active')){
+//             burger.dispatchEvent(ev);
+//          }
+//       }else if(event.target === links[2] && i ===2){
+//          drink.scrollIntoView({
+//             behavior:"smooth",
+//          })
+//          if(headerInner.classList.contains('_active')){
+//             burger.dispatchEvent(ev);
+//          }
+//       }else if(event.target === links[3] && i ===3){
+//          folow.scrollIntoView({
+//             behavior:"smooth",
+//          })
+//          if(headerInner.classList.contains('_active')){
+//             burger.dispatchEvent(ev);
+//          }
+//       }else if(event.target === links[4] && i ===4){
+//          if(headerInner.classList.contains('_active')){
+//             burger.dispatchEvent(ev);
+//          }
+//       }else if(event.target === links[5] && i ===5){
+//          if(headerInner.classList.contains('_active')){
+//             burger.dispatchEvent(ev);
+//          }
+//       }
+//    }
+// })
 if (header != null){
    window.addEventListener('scroll',function headerScroll(){
       let headerTop = window.scrollY;
